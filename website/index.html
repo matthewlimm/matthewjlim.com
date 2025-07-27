@@ -170,26 +170,43 @@
         opacity: 0;
       }
       
-      /* Mobile text rendering improvements */
+      /* Hide toggle button on mobile and improve text rendering */
       @media screen and (max-width: 768px) {
+        /* Hide dark mode toggle on mobile */
+        .mobile-hide {
+          display: none !important;
+        }
+        
         body {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+          text-rendering: optimizeLegibility !important;
         }
         
         /* Improve email link rendering on mobile */
         .email-link {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-rendering: optimizeLegibility;
-          transform: translateZ(0);
-          backface-visibility: hidden;
-          perspective: 1000px;
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+          text-rendering: optimizeLegibility !important;
+          transform: translateZ(0) !important;
+          backface-visibility: hidden !important;
+          perspective: 1000px !important;
+          font-weight: 500 !important;
+          letter-spacing: 0.01em !important;
+          transition: none !important;
         }
         
-        /* Remove transitions on mobile that can cause blur */
-        .email-link {
-          transition: none !important;
+        /* Ensure all text is crisp on mobile */
+        * {
+          -webkit-font-smoothing: antialiased !important;
+          -moz-osx-font-smoothing: grayscale !important;
+        }
+      }
+      
+      /* Also hide on smaller screens */
+      @media screen and (max-width: 640px) {
+        .mobile-hide {
+          display: none !important;
         }
       }
       
@@ -203,7 +220,7 @@
   
   <body class="font-roboto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300 dotted-bg min-h-screen">
     <!-- Dark mode toggle - hidden on mobile -->
-    <button id="theme-toggle" class="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg hidden sm:flex">
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 shadow-lg mobile-hide">
       <i class="fas fa-moon text-lg dark:hidden text-gray-600"></i>
       <i class="fas fa-sun text-lg hidden dark:block text-yellow-400"></i>
     </button>
